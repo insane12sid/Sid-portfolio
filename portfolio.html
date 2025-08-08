@@ -1,9 +1,1152 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siddhant Kumar - Developer & Data Enthusiast</title>
+    <meta name="description" content="Professional portfolio of Siddhant Kumar - Computer Science student at IIIT Surat, specializing in full-stack development, machine learning, and data analysis.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables */
+        :root {
+            --background: hsl(240, 10%, 3.9%);
+            --foreground: hsl(0, 0%, 98%);
+            --primary: hsl(221, 83%, 53%);
+            --primary-glow: hsl(221, 83%, 65%);
+            --secondary: hsl(240, 3.7%, 15.9%);
+            --muted: hsl(240, 3.7%, 15.9%);
+            --muted-foreground: hsl(240, 5%, 64.9%);
+            --border: hsl(240, 3.7%, 15.9%);
+            --gradient-hero: linear-gradient(135deg, hsl(221, 83%, 53%), hsl(221, 83%, 65%));
+            --gradient-card: linear-gradient(145deg, hsl(240, 3.7%, 15.9%), hsl(240, 10%, 3.9%));
+            --shadow-glow: 0 0 30px hsl(221, 83%, 53%, 0.3);
+            --shadow-card: 0 8px 32px hsl(0, 0%, 0%, 0.3);
+            --shadow-hover: 0 16px 48px hsl(221, 83%, 53%, 0.2);
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--background);
+            color: var(--foreground);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Utility Classes */
+        .text-gradient {
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-gradient {
+            background: var(--gradient-hero);
+        }
+
+        .card-gradient {
+            background: var(--gradient-card);
+        }
+
+        .glow-effect {
+            box-shadow: var(--shadow-glow);
+        }
+
+        .card-shadow {
+            box-shadow: var(--shadow-card);
+        }
+
+        .hover-glow {
+            transition: all 0.3s ease;
+        }
+
+        .hover-glow:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-slide-up {
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        .hero-bg-element {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--gradient-hero);
+            filter: blur(60px);
+            opacity: 0.2;
+        }
+
+        .hero-bg-element:nth-child(1) {
+            top: 80px;
+            left: 80px;
+            width: 288px;
+            height: 288px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-bg-element:nth-child(2) {
+            bottom: 80px;
+            right: 80px;
+            width: 384px;
+            height: 384px;
+            animation: float 6s ease-in-out infinite 3s;
+        }
+
+        .hero-bg-element:nth-child(3) {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            animation: float 6s ease-in-out infinite 1.5s;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .profile-picture {
+            width: 128px;
+            height: 128px;
+            border-radius: 50%;
+            background: var(--gradient-hero);
+            padding: 4px;
+            margin: 0 auto 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--muted-foreground);
+            margin-bottom: 24px;
+        }
+
+        .hero-location {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 32px;
+            color: var(--muted-foreground);
+        }
+
+        .hero-contacts {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .hero-socials {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--foreground);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            border: 1px solid transparent;
+        }
+
+        .btn-ghost:hover {
+            background: var(--muted);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.25rem;
+            color: var(--muted-foreground);
+            margin-bottom: 64px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 32px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: hsl(221, 83%, 53%, 0.3);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 48px;
+            margin-left: 80px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -52px;
+            width: 16px;
+            height: 16px;
+            background: var(--gradient-hero);
+            border-radius: 50%;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .timeline-card {
+            background: var(--gradient-card);
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-card);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: 24px;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background: var(--gradient-card);
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-card);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Skills */
+        .skill-bar {
+            position: relative;
+            height: 8px;
+            background: var(--muted);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: var(--gradient-hero);
+            border-radius: 4px;
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+
+        .skill-item {
+            margin-bottom: 16px;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .skill-name {
+            font-weight: 500;
+        }
+
+        .skill-percent {
+            font-size: 14px;
+            color: var(--primary);
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            background: hsl(221, 83%, 53%, 0.1);
+            color: var(--primary);
+            border: 1px solid hsl(221, 83%, 53%, 0.3);
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: hsl(240, 3.7%, 15.9%, 0.5);
+            color: var(--foreground);
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-textarea {
+            resize: none;
+            min-height: 120px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-hero);
+            color: white;
+            border: none;
+            width: 100%;
+            font-weight: 500;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* Contact Info */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-hero);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.25rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .timeline-line {
+                left: 24px;
+            }
+            
+            .timeline-item {
+                margin-left: 60px;
+            }
+            
+            .timeline-dot {
+                left: -32px;
+            }
+            
+            .hero-contacts {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40%, 43% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            70% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        .scroll-mouse {
+            width: 24px;
+            height: 40px;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .scroll-dot {
+            width: 4px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 2px;
+            margin-top: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 32px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--muted-foreground);
+        }
+
+        /* SVG Icons */
+        .icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+    </style>
 </head>
 <body>
-  <h1>Welcome to My Portfolio!</h1>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-bg">
+            <div class="hero-bg-element"></div>
+            <div class="hero-bg-element"></div>
+            <div class="hero-bg-element"></div>
+        </div>
+
+        <div class="hero-content animate-slide-up">
+            <div class="profile-picture hover-glow">
+                <div class="profile-inner">SK</div>
+            </div>
+
+            <h1 class="hero-title animate-fade-in">
+                <span class="text-gradient">Siddhant Kumar</span>
+            </h1>
+            
+            <p class="hero-subtitle animate-fade-in">Developer & Data Enthusiast</p>
+
+            <div class="hero-location animate-fade-in">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <span>Noida, UP</span>
+            </div>
+
+            <div class="hero-contacts animate-fade-in">
+                <a href="mailto:sid.12.bamal@gmail.com" class="btn hover-glow">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    sid.12.bamal@gmail.com
+                </a>
+                
+                <a href="tel:+919105200970" class="btn hover-glow">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    +91 91052 00970
+                </a>
+            </div>
+
+            <div class="hero-socials animate-fade-in">
+                <a href="https://github.com/insane12sid" class="btn btn-ghost hover-glow" target="_blank">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    GitHub
+                </a>
+                
+                <a href="https://www.linkedin.com/in/siddhant-kumar-791972223/" class="btn btn-ghost hover-glow" target="_blank">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="text-gradient">Education</span>
+            </h2>
+            <p class="section-subtitle">Academic journey and achievements</p>
+
+            <div class="timeline">
+                <div class="timeline-line"></div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot glow-effect"></div>
+                    <div class="timeline-card">
+                        <div class="badge" style="margin-bottom: 12px;">2021 - 2025</div>
+                        <h3 style="font-size: 1.25rem; font-weight: 600; margin: 12px 0;">Indian Institute of Information Technology Surat, Gujarat</h3>
+                        <p style="color: var(--muted-foreground); margin-bottom: 12px;">Bachelor of Technology in Computer Science and Engineering</p>
+                        <div class="badge">CGPA 8.18</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot glow-effect"></div>
+                    <div class="timeline-card">
+                        <div class="badge" style="margin-bottom: 12px;">2018 - 2020</div>
+                        <h3 style="font-size: 1.25rem; font-weight: 600; margin: 12px 0;">Delhi Public School, Hapur, Uttar Pradesh</h3>
+                        <p style="color: var(--muted-foreground); margin-bottom: 12px;">Class XII</p>
+                        <div class="badge">96.8%</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot glow-effect"></div>
+                    <div class="timeline-card">
+                        <div class="badge" style="margin-bottom: 12px;">2016 - 2018</div>
+                        <h3 style="font-size: 1.25rem; font-weight: 600; margin: 12px 0;">Delhi Public School, Hapur, Uttar Pradesh</h3>
+                        <p style="color: var(--muted-foreground); margin-bottom: 12px;">Class X</p>
+                        <div class="badge">96.4%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section" style="background: hsl(240, 3.7%, 15.9%, 0.3);">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="text-gradient">Experience</span>
+            </h2>
+            <p class="section-subtitle">Professional experience and key projects</p>
+
+            <h3 style="text-align: center; font-size: 1.5rem; margin-bottom: 32px;">Work Experience</h3>
+            <div class="grid grid-2" style="margin-bottom: 64px;">
+                <div class="card hover-glow">
+                    <div style="display: flex; gap: 16px;">
+                        <div class="contact-icon">
+                            <svg class="icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span class="badge" style="background: var(--gradient-hero); color: white;">Internship</span>
+                                <span class="badge">Current</span>
+                            </div>
+                            <h4 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px;">Research Intern</h4>
+                            <p style="color: var(--primary); font-weight: 500; margin-bottom: 8px;">IIT Delhi</p>
+                            <p style="color: var(--muted-foreground); font-size: 14px; margin-bottom: 12px;">January 2025 - June 2025 • Delhi, India</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card hover-glow">
+                    <div style="display: flex; gap: 16px;">
+                        <div class="contact-icon">
+                            <svg class="icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span class="badge" style="background: var(--gradient-hero); color: white;">Full-time</span>
+                            </div>
+                            <h4 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 4px;">Presales Consultant - Trainee</h4>
+                            <p style="color: var(--primary); font-weight: 500; margin-bottom: 8px;">Cyfuture India</p>
+                            <p style="color: var(--muted-foreground); font-size: 14px; margin-bottom: 12px;">June 2025 - Present • Noida</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="text-align: center; font-size: 1.5rem; margin-bottom: 32px;">Key Projects</h3>
+            <div class="grid grid-3">
+                <div class="card hover-glow">
+                    <div class="badge" style="margin-bottom: 8px;">April 2024</div>
+                    <h4 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 8px;">Fake Social Media Account Detection</h4>
+                    <div class="badge" style="margin-bottom: 16px;">Machine Learning Project</div>
+                    <p style="color: var(--muted-foreground); font-size: 14px; margin-bottom: 16px;">Implemented using python libraries such as selenium, tensorflow and sklearn.</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <span class="badge">Python</span>
+                        <span class="badge">TensorFlow</span>
+                        <span class="badge">Selenium</span>
+                        <span class="badge">Sklearn</span>
+                    </div>
+                </div>
+
+                <div class="card hover-glow">
+                    <div class="badge" style="margin-bottom: 8px;">May 2024</div>
+                    <h4 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 8px;">Personal Finance Dashboard</h4>
+                    <div class="badge" style="margin-bottom: 16px;">React.js Project</div>
+                    <p style="color: var(--muted-foreground); font-size: 14px; margin-bottom: 16px;">A Personal Finance Dashboard using Power BI to help an individual track and understand their expenses and achieve their financial goals.</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <span class="badge">React.js</span>
+                        <span class="badge">Power BI</span>
+                    </div>
+                </div>
+
+                <div class="card hover-glow">
+                    <div class="badge" style="margin-bottom: 8px;">July 2023</div>
+                    <h4 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 8px;">Student Information Website</h4>
+                    <div class="badge" style="margin-bottom: 16px;">Web Development</div>
+                    <p style="color: var(--muted-foreground); font-size: 14px; margin-bottom: 16px;">Informative website for students applying to go abroad using HTML, CSS, Javascript, Firebase.</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <span class="badge">HTML</span>
+                        <span class="badge">CSS</span>
+                        <span class="badge">JavaScript</span>
+                        <span class="badge">Firebase</span>
+                    </div>
+                </div>
+
+                <div class="card hover-glow">
+                    <div class="badge" style="margin-bottom: 8px;">July 2023</div>
+                    <h4 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 8px;">Restaurant Billing System</h4>
+                    <div class="badge" style="margin-bottom: 16px;">Web Application</div>
+                    <p style="color: var(--muted-foreground); font-size: 14px; margin-bottom: 16px;">Billing system for a Restaurant using JavaScript and Firebase for backend functionality.</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <span class="badge">JavaScript</span>
+                        <span class="badge">Firebase</span>
+                    </div>
+                </div>
+
+                <div class="card hover-glow">
+                    <div class="badge" style="margin-bottom: 8px;">May 2024</div>
+                    <h4 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 8px;">Online Judge Platform</h4>
+                    <div class="badge" style="margin-bottom: 16px;">Full Stack Project</div>
+                    <p style="color: var(--muted-foreground); font-size: 14px; margin-bottom: 16px;">Designed and implemented an Online Judge Platform using Python and Django, featuring an admin panel for candidates.</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <span class="badge">Python</span>
+                        <span class="badge">Django</span>
+                        <span class="badge">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="text-gradient">Technical Skills</span>
+            </h2>
+            <p class="section-subtitle">Technologies and tools I work with</p>
+
+            <div class="grid grid-3" style="margin-bottom: 64px;">
+                <div class="card hover-glow">
+                    <h3 style="color: var(--primary); font-size: 1.25rem; margin-bottom: 16px;">Languages</h3>
+                    <div style="height: 4px; background: var(--gradient-hero); border-radius: 2px; margin-bottom: 24px;"></div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">C++</span>
+                            <span class="skill-percent">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" data-width="85"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Python</span>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" data-width="80"></div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">JavaScript</span>
+                            <span class="skill-percent">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" data-width="85"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">C</span>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" data-width="80"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">SQL</span>
+                            <span class="skill-percent">75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" data-width="75"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card hover-glow">
+                    <h3 style="color: var(--primary); font-size: 1.25rem; margin-bottom: 16px;">Frameworks & Libraries</h3>
+                    <div style="height: 4px; background: var(--gradient-hero); border-radius: 2px; margin-bottom: 24px;"></div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">React.js</span>
+                            <span class="skill-percent">88%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" data-width="88"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Pandas</span>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" data-width="80"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Material UI</span>
+                            <span class="skill-percent">75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" data-width="75"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Scikit Learn</span>
+                            <span class="skill-percent">75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" data-width="75"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card hover-glow">
+                    <h3 style="color: var(--primary); font-size: 1.25rem; margin-bottom: 16px;">Tools & Technologies</h3>
+                    <div style="height: 4px; background: var(--gradient-hero); border-radius: 2px; margin-bottom: 24px;"></div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">VS Code</span>
+                            <span class="skill-percent">95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" data-width="95"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Git/GitHub</span>
+                            <span class="skill-percent">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" data-width="90"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Firebase</span>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" data-width="80"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Canva</span>
+                            <span class="skill-percent">75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" data-width="75"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Figma</span>
+                            <span class="skill-percent">70%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" data-width="70"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 32px;">Core Competencies</h3>
+                <div class="badges">
+                    <span class="badge">Full Stack Development</span>
+                    <span class="badge">Machine Learning</span>
+                    <span class="badge">Data Analysis</span>
+                    <span class="badge">UI/UX Design</span>
+                    <span class="badge">Problem Solving</span>
+                    <span class="badge">Self-learning</span>
+                    <span class="badge">Presentation</span>
+                    <span class="badge">Adaptability</span>
+                    <span class="badge">Web Development</span>
+                    <span class="badge">Database Management</span>
+                    <span class="badge">API Development</span>
+                    <span class="badge">Version Control</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" style="background: hsl(240, 3.7%, 15.9%, 0.3);">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="text-gradient">Get In Touch</span>
+            </h2>
+            <p class="section-subtitle">Let's discuss opportunities and collaborations</p>
+
+            <div class="grid grid-2">
+                <div class="card hover-glow">
+                    <h3 style="color: var(--primary); font-size: 1.5rem; margin-bottom: 24px;">Let's Connect</h3>
+                    <p style="color: var(--muted-foreground); margin-bottom: 32px;">
+                        I'm always interested in new opportunities, whether that's a job, a project, 
+                        or just a chat about technology and innovation.
+                    </p>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            </div>
+                            <div>
+                                <p style="font-size: 14px; color: var(--muted-foreground);">Email</p>
+                                <a href="mailto:sid.12.bamal@gmail.com" style="color: var(--foreground); text-decoration: none; font-weight: 500;">sid.12.bamal@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            </div>
+                            <div>
+                                <p style="font-size: 14px; color: var(--muted-foreground);">Phone</p>
+                                <a href="tel:+919105200970" style="color: var(--foreground); text-decoration: none; font-weight: 500;">+91 91052 00970</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            </div>
+                            <div>
+                                <p style="font-size: 14px; color: var(--muted-foreground);">Location</p>
+                                <span style="color: var(--foreground); font-weight: 500;">Noida, UP</span>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg class="icon" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            </div>
+                            <div>
+                                <p style="font-size: 14px; color: var(--muted-foreground);">GitHub</p>
+                                <a href="https://github.com/insane12sid" target="_blank" style="color: var(--foreground); text-decoration: none; font-weight: 500;">@insane12sid</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg class="icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                            </div>
+                            <div>
+                                <p style="font-size: 14px; color: var(--muted-foreground);">LinkedIn</p>
+                                <a href="https://linkedin.com/in/siddhant-3050201cd" target="_blank" style="color: var(--foreground); text-decoration: none; font-weight: 500;">Siddhant Kumar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 32px; padding: 16px; background: hsl(221, 83%, 53%, 0.1); border-radius: 8px;">
+                        <p style="font-size: 14px; color: var(--primary); font-weight: 500;">⚡ Quick Response Guaranteed</p>
+                        <p style="font-size: 12px; color: var(--muted-foreground); margin-top: 4px;">I typically respond within 24 hours</p>
+                    </div>
+                </div>
+
+                <div class="card hover-glow">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Name *</label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Your full name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email *</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="your.email@example.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="message">Message *</label>
+                            <textarea id="message" name="message" class="form-input form-textarea" placeholder="Tell me about your project or opportunity..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <svg class="icon" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22,2 15,22 11,13 2,9 22,2"></polygon></svg>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Siddhant Kumar. Built with HTML, CSS & JavaScript.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Skill bar animation
+        function animateSkillBars() {
+            const skillFills = document.querySelectorAll('.skill-fill');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const skillFill = entry.target;
+                        const width = skillFill.getAttribute('data-width');
+                        setTimeout(() => {
+                            skillFill.style.width = width + '%';
+                        }, 200);
+                        observer.unobserve(skillFill);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            skillFills.forEach(fill => {
+                observer.observe(fill);
+            });
+        }
+
+        // Contact form submission
+        function handleFormSubmission() {
+            const form = document.getElementById('contact-form');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show success message
+                alert('Message sent! Thank you for your message. I\'ll get back to you soon!');
+                
+                // Reset form
+                form.reset();
+            });
+        }
+
+        // Smooth scroll for internal links
+        function setupSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Fade in animation on scroll
+        function setupScrollAnimations() {
+            const animatedElements = document.querySelectorAll('.card, .timeline-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        }
+
+        // Initialize all functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            animateSkillBars();
+            handleFormSubmission();
+            setupSmoothScroll();
+            setupScrollAnimations();
+        });
+    </script>
 </body>
 </html>
