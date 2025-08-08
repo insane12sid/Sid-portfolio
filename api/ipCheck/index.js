@@ -1,26 +1,17 @@
-const fs = require("fs");
-const path = require("path");
-
 module.exports = async function (context, req) {
-  const allowedIP = "10.237.238.227"; // Replace with your actual IP
+  const allowedIp = "10.237.238.227"; // 🔁 Replace with your IP
+  const requesterIp = req.headers["x-forwarded-for"]?.split(",")[0].trim();
 
-  const clientIP =
-    req.headers["x-forwarded-for"]?.split(",")[0] || req.headers["x-client-ip"];
-
-  if (clientIP === allowedIP) {
-    const htmlPath = path.join(__dirname, "../../portfolio.html");
-    const html = fs.readFileSync(htmlPath, "utf8");
-
+  if (requesterIp === allowedIp) {
     context.res = {
       status: 200,
       headers: { "Content-Type": "text/html" },
-      body: html
+      body: require('fs').readFileSync(`${__dirname}/../../portfolio.html`, 'utf8')
     };
   } else {
     context.res = {
       status: 403,
-      headers: { "Content-Type": "text/plain" },
-      body: "Access Denied: Your IP is not allowed."
+      body: "Access denied: IP not allowed."
     };
   }
 };
