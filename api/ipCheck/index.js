@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 module.exports = async function (context, req) {
-  const allowedIP = "123.123.123.123"; // Replace with your actual IP
+  const allowedIP = "10.237.238.227"; // Replace with your actual IP
 
   const clientIP =
     req.headers["x-forwarded-for"]?.split(",")[0] || req.headers["x-client-ip"];
